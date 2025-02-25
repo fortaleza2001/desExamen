@@ -1,0 +1,12 @@
+$TTL 38400
+@    IN  SOA   ns.practica.com. admin.practica.com. (
+                       2024020401 ; Serial
+                       3600       ; Refresh
+                       1800       ; Retry
+                       604800     ; Expire
+                       38400      ; Minimum TTL
+)
+@    IN  NS    ns.practica.com.
+
+1 IN  PTR	jupiter.practica.com.
+2 IN  PTR	marte.practica.com.
