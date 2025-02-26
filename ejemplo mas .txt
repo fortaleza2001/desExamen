@@ -1,0 +1,20 @@
+zone "66.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.192.66";
+};
+
+
+
+
+$TTL 86400
+@   IN  SOA ns1.tudominio.com. admin.tudominio.com. (
+        20240226   ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        604800     ; Expire
+        86400 )    ; Minimum TTL
+
+    IN  NS  ns1.tudominio.com.
+
+24.200  IN  PTR  servidor1.tudominio.com.
+24.150  IN  PTR  servidor2.tudominio.com.

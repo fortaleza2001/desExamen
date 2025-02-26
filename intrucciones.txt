@@ -1,0 +1,125 @@
+📝 Directivas para controlar permisos en vsftpd
+1️⃣ Permitir o denegar escritura para todos los usuarios
+Acción	Directiva	Descripción
+✅ Permitir escritura	write_enable=YES	Permite que los usuarios suban/modifiquen archivos.
+❌ Denegar escritura	write_enable=NO	Bloquea la subida/modificación de archivos para todos.
+📌 Ejemplo para permitir escritura:
+
+plaintext
+Copiar
+Editar
+write_enable=YES
+📌 Ejemplo para denegar escritura:
+
+plaintext
+Copiar
+Editar
+write_enable=NO
+2️⃣ Permitir o denegar escritura a usuarios anónimos
+Acción	Directiva	Descripción
+✅ Permitir escritura anónima	anon_upload_enable=YES	Permite que los usuarios anónimos suban archivos.
+❌ Denegar escritura anónima	anon_upload_enable=NO	Bloquea la subida de archivos por anónimos.
+📌 Ejemplo para permitir:
+
+plaintext
+Copiar
+Editar
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+📌 Ejemplo para denegar:
+
+plaintext
+Copiar
+Editar
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+3️⃣ Permitir o denegar escritura a usuarios locales (usuarios del sistema)
+Acción	Directiva	Descripción
+✅ Permitir escritura a locales	local_enable=YES
+write_enable=YES	Permite a usuarios locales subir archivos.
+❌ Denegar escritura a locales	write_enable=NO	Bloquea la subida de archivos a usuarios locales.
+📌 Ejemplo para permitir:
+
+plaintext
+Copiar
+Editar
+local_enable=YES
+write_enable=YES
+📌 Ejemplo para denegar:
+
+plaintext
+Copiar
+Editar
+local_enable=YES
+write_enable=NO
+4️⃣ Hacer que los anónimos puedan escribir, pero los locales no (o viceversa)
+Escenario	Configuración
+✅ Anónimos pueden escribir, locales no	anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+write_enable=NO
+✅ Locales pueden escribir, anónimos no	anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+write_enable=YES
+5️⃣ Denegar o permitir acceso a usuarios específicos
+Acción	Directiva	Descripción
+🚫 Denegar acceso a ciertos usuarios	userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=YES	Los usuarios en /etc/vsftpd.user_list serán bloqueados.
+✅ Permitir solo ciertos usuarios	userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO	Solo los usuarios en /etc/vsftpd.user_list podrán conectarse.
+📌 Ejemplo para bloquear usuarios específicos:
+1️⃣ Agregar esto en /etc/vsftpd.conf:
+
+plaintext
+Copiar
+Editar
+userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=YES
+2️⃣ Agregar los usuarios a /etc/vsftpd.user_list:
+
+plaintext
+Copiar
+Editar
+usuario1
+usuario2
+📌 Ejemplo para permitir solo ciertos usuarios:
+
+plaintext
+Copiar
+Editar
+userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO
+📌 Resumen Rápido
+Opción	Directiva	Valor para permitir	Valor para denegar
+Escritura para todos	write_enable	YES	NO
+Escritura anónima	anon_upload_enable	YES	NO
+Escritura para locales	local_enable y write_enable	YES	NO
+Anónimos escriben, locales no	anon_upload_enable=YES
+write_enable=NO	✔️	❌
+Locales escriben, anónimos no	anon_upload_enable=NO
+write_enable=YES	✔️	❌
+Bloquear usuarios específicos	userlist_enable=YES
+userlist_deny=YES	-	❌
+Permitir solo ciertos usuarios	userlist_enable=YES
+userlist_deny=NO	✔️	-
+🚀 Ahora puedes configurar vsftpd según lo que necesites
+Si necesitas más detalles, dime qué escenario específico quieres y te ayudo. 😊
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

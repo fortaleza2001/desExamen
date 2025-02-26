@@ -1,0 +1,107 @@
+cargar agente ssh = eval $(ssh-agent -s)
+agregar clave ssh = ssh-add ~/.ssh/id_ed25519_alumno
+crear clave ssh = ssh-keygen
+crear con nombre = ssh-keygen -t ed25519 -f ~/.ssh/sshjuan -C "tu_correo@example.com"
+crear usuario = sudo useradd -m -s /bin/bash alumno
+asignar contraseña = sudo passwd alumno
+
+dar permisos : sudo chown -R usuario_nuevo /ruta/del/directorio
+sudo chmod -R 750 /ruta/del/directorio
+
+
+
+
+1️⃣ Mensaje de bienvenida en SSH
+Cuando un usuario se conecta por SSH, puedes mostrar un mensaje de bienvenida editando el archivo /etc/motd o usando issue.net.
+
+Método 1: Usando /etc/motd (Mensaje después de iniciar sesión)
+1️⃣ Edita el archivo /etc/motd:
+
+bash
+Copiar
+Editar
+sudo nano /etc/motd
+2️⃣ Escribe el mensaje que quieres mostrar:
+
+plaintext
+Copiar
+Editar
+🚀 ¡Bienvenido al servidor SSH! 🚀
+Recuerda usar comandos con precaución.
+3️⃣ Guarda y sal con CTRL + X, Y, ENTER.
+4️⃣ Prueba conectarte por SSH:
+
+bash
+Copiar
+Editar
+
+
+
+
+
+
+
+
+
+
+
+
+Método 2: Usando /etc/issue.net (Mensaje antes de iniciar sesión)
+1️⃣ Edita el archivo /etc/issue.net:
+
+bash
+Copiar
+Editar
+sudo nano /etc/issue.net
+2️⃣ Agrega un mensaje:
+
+plaintext
+Copiar
+Editar
+🚨 Advertencia: Solo usuarios autorizados pueden acceder. 🚨
+3️⃣ Edita el archivo de configuración de SSH:
+
+bash
+Copiar
+Editar
+sudo nano /etc/ssh/sshd_config
+Busca y descomenta (o añade) esta línea:
+
+plaintext
+Copiar
+Editar
+Banner /etc/issue.net
+4️⃣ Reinicia el servicio SSH:
+
+bash
+Copiar
+Editar
+sudo systemctl restart ssh
+
+
+
+2️⃣ Mensaje de bienvenida en FTP (Anónimo y Normal)
+Si usas vsftpd como servidor FTP, puedes configurar un mensaje de bienvenida.
+
+Editar la configuración de vsftpd
+1️⃣ Abre el archivo de configuración:
+
+bash
+Copiar
+Editar
+sudo nano /etc/vsftpd.conf
+2️⃣ Busca o añade estas líneas:
+
+plaintext
+Copiar
+Editar
+ftpd_banner=🚀 ¡Bienvenido al servidor FTP! 🚀
+dirmessage_enable=YES
+3️⃣ Guarda y reinicia vsftpd:
+
+bash
+Copiar
+Editar
+sudo systemctl restart vsftpd
+4️⃣ Prueba conectarte con un cliente FTP normal o anónimo y verás el mensaje de bienvenida.
+
